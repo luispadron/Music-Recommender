@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane fx:controller="controllers.MainViewController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar fx:id="menuBar">
+              <menus>
+                <Menu fx:id="menuBarFile" mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="menuItemClose" mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu fx:id="menuBarEdit" mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem fx:id="menuItemClear" mnemonicParsing="false" text="Clear" onAction="#onMenuItemClearClick" />
+                  </items>
+                </Menu>
+                <Menu fx:id="menuBarHelp" mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="menuItemAbout" mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="footerLabel" text="Created by Luis Padron">
+               <padding>
+                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
