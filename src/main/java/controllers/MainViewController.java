@@ -37,7 +37,9 @@ public class MainViewController implements Initializable {
     }
 
     public void onClearMenuItem(ActionEvent actionEvent) {
-
+        /* Clear out all the fields for the TextField and TextArea */
+        inputTextField.clear();
+        outputTextArea.clear();
     }
 
     public void onAboutMenuItem(ActionEvent actionEvent) {
@@ -54,7 +56,7 @@ public class MainViewController implements Initializable {
            submitButton.setVisible(true);
         }
         inputTextField.setPromptText("Enter artist name you would like to match");
-
+        outputTextArea.setVisible(true);
     }
     /* Whenever use selects to look for new releases from the drop down menu bar */
     public void onNewReleasesMenuItem(ActionEvent actionEvent) {
