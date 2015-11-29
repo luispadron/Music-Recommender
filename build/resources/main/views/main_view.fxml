@@ -49,7 +49,7 @@
                   <Font size="14.0" />
                </font>
             </SplitMenuButton>
-            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#onSubmitButtonClick" text="Submit" visible="false">
+            <Button fx:id="submitButton" mnemonicParsing="false" text="Submit" visible="false">
                <VBox.margin>
                   <Insets left="200.0" top="40.0" />
                </VBox.margin>
