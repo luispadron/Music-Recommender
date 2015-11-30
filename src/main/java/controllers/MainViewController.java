@@ -1,13 +1,9 @@
 package controllers;
 
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.SettableFuture;
 import com.wrapper.spotify.Api;
 import com.wrapper.spotify.methods.ArtistSearchRequest;
 import com.wrapper.spotify.methods.RelatedArtistsRequest;
 import com.wrapper.spotify.models.Artist;
-import com.wrapper.spotify.models.AuthorizationCodeCredentials;
 import com.wrapper.spotify.models.Page;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,13 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import models.ArtistFinal;
 
 import javax.swing.*;
-import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.Future;
 
 public class MainViewController implements Initializable {
     /* Set the fxml objects so we can use them in code */
@@ -113,18 +109,28 @@ public class MainViewController implements Initializable {
                             if (relatedArtists.isEmpty()) {
                                 outputTextArea.setText("Couldn't find any related artists, bummer.");
                             }else {
+                                //Create an array of ArtistFinal objects, which will be used to get information
+                                //I made my own class because I wanted to have specific methods to help me get information
+                                //easier than the class that was provided by the API
+                                ArrayList<ArtistFinal> finalArtists = new ArrayList<>();
+                                //set the array
+                                for (Artist artist : relatedArtists) {
+                                    finalArtists.add(new ArtistFinal(artist.getName(), artist.getHref(),
+                                            artist.getGenres(), artist.getPopularity()));
+                                }
                                 //display the related artists
                                 outputTextArea.setText("------RELATED ARTISTS------\n\n");
-                                for (Artist artist : relatedArtists) {
+                                for (ArtistFinal artist : finalArtists) {
+
                                     //format what we will display to the user for each artist
                                     outputTextArea.setText(outputTextArea.getText()
                                             + "Name: " + artist.getName() +  "\nPopularity: " + artist.getPopularity());
-                                    //check if genre information is available
-                                    if (!artist.getGenres().isEmpty()) {
-                                        outputTextArea.setText(outputTextArea.getText() + "\nGenre: " + artist.getGenres().get(0));
+                                    if(!artist.getFormattedGenres().isEmpty()) {
+                                        outputTextArea.setText(outputTextArea.getText() + "\nGenre(s): "
+                                                + artist.getFormattedGenres());
                                     }
-                                    outputTextArea.setText(outputTextArea.getText() +
-                                            "\n\n---------------------------------------------------------\n");
+                                    outputTextArea.setText(outputTextArea.getText() + "\nListen: " + artist.getUrl() +
+                                            "\n---------------------------------------------------------\n");
                                 }
                             }
                         } catch (Exception e) {
