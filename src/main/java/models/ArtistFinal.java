@@ -60,10 +60,16 @@ public class ArtistFinal {
         //if we have more than 1 genre
         if (genres.size() > 1) {
             for (String genre : genres) {
-                formattedGenres = genre + ", " + genre;
+                formattedGenres += genre + ", ";
             }
         } else if (genres.size() == 1) { //if we only have one genre
             formattedGenres = genres.get(0);
+        }
+
+        //Remove any trailing commas
+        if (formattedGenres.endsWith(", ")) {
+            StringBuilder sb = new StringBuilder(formattedGenres);
+            formattedGenres = sb.deleteCharAt(formattedGenres.lastIndexOf(",")).toString();
         }
 
         return formattedGenres;
@@ -87,31 +93,30 @@ public class ArtistFinal {
         //the artists homepage, this will help us give this infromation to the user
         //We grab the JSON asynchronously
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(href).build();
 
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                JOptionPane.showMessageDialog(null, "Unable to connect to internet and grab URL for the artist" +
-                ", error: " + e);
+        Request request = new Request.Builder()
+                .url(href)
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+
+            //Get the body of the url contents
+            String jsondata = response.body().string();
+            //Parse the json data
+            try {
+                JSONObject baseData = new JSONObject(jsondata);
+                JSONObject jsonUrl = baseData.getJSONObject("external_urls");
+                url = jsonUrl.getString("spotify");
+            } catch (JSONException e) {
+                JOptionPane.showMessageDialog(null, "JSON error occurred: " + e);
             }
 
-            @Override
-            public void onResponse(Response response) throws IOException {
-                //get the body
-                String jsondata = response.body().string();
-                //parse the json data
-                try {
-                    JSONObject baseData = new JSONObject(jsondata);
-                    JSONObject jsonUrl = baseData.getJSONObject("external_urls");
-                    url = jsonUrl.getString("spotify");
-                    System.out.println(url);
-                } catch (JSONException e) {
-                    JOptionPane.showMessageDialog(null, "JSON error occurred: " + e);
-                }
-            }
-        });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return url;
     }
 
