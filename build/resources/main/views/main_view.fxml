@@ -10,21 +10,21 @@
    <children>
       <HBox prefHeight="60.0" prefWidth="800.0">
          <children>
-            <MenuBar prefHeight="25.0" prefWidth="800.0">
+            <MenuBar prefHeight="25.0" prefWidth="800.0" styleClass="menu-bar">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" text="File" id="#menu">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onCloseMenuItem" text="Close" />
+                    <MenuItem mnemonicParsing="false" onAction="#onCloseMenuItem" text="Close" id="#menu-item" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu mnemonicParsing="false" text="Edit" id="#menu">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onClearMenuItem" text="Clear" />
+                    <MenuItem mnemonicParsing="false" onAction="#onClearMenuItem" text="Clear" id="#menu-item" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu mnemonicParsing="false" text="Help" id="#menu">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onAboutMenuItem" text="About" />
+                    <MenuItem mnemonicParsing="false" onAction="#onAboutMenuItem" text="About" id="#menu-item"/>
                   </items>
                 </Menu>
               </menus>
@@ -48,7 +48,7 @@
                   <Font size="14.0" />
                </font>
             </SplitMenuButton>
-            <Button fx:id="submitButton" mnemonicParsing="false" text="Submit" visible="false">
+            <Button fx:id="submitButton" mnemonicParsing="false" text="Submit" visible="false" styleClass="submit-button">
                <VBox.margin>
                   <Insets left="200.0" top="40.0" />
                </VBox.margin>

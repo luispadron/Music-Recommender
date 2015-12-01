@@ -1,3 +1,16 @@
 .root {
-    -fx-background-color: aqua;
+    -fx-background-color: #121314;
 }
+
+.menu-bar {
+    -fx-background-color: #1C1C1F;
+}
+
+#menu {
+    -fx-text-fill: white;
+}
+
+#menu-item {
+    -fx-text-fill: white;
+}
+
