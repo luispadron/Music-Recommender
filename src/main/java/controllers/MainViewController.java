@@ -20,9 +20,7 @@ import models.ArtistFinal;
 
 import javax.swing.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MainViewController implements Initializable {
     /* Set the fxml objects so we can use them in code */
@@ -190,7 +188,7 @@ public class MainViewController implements Initializable {
                 try {
                     NewReleases newReleases = request.get();
                     //get the page of spotify new albums
-                    Page<SimpleAlbum> pageAlbums = newReleases.getAlbums();
+                    final Page<SimpleAlbum> pageAlbums = newReleases.getAlbums();
                     //create a list of those albums
                     final List<SimpleAlbum> simpleAlbums = pageAlbums.getItems();
                     //Convert and create an array list of AlbumFinals my own class
@@ -221,14 +219,5 @@ public class MainViewController implements Initializable {
                 }
             }
         });
-    }
-
-    /* Whenever use selects to look for featured play-lists from the drop down menu bar */
-    public void onFeaturedPlaylistsMenuItem(ActionEvent actionEvent) {
-        if (!submitButton.isVisible()) {
-            submitButton.setVisible(true);
-        }
-        inputTextField.setPromptText("Enter the country code, example: US");
-
     }
 }

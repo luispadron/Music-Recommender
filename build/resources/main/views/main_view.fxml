@@ -40,7 +40,6 @@
               <items>
                 <MenuItem fx:id="relatedArtistsMenuItem" mnemonicParsing="false" onAction="#onRelatedArtistsMenuItem" text="Get related artists" />
                 <MenuItem fx:id="newReleasesMenuItem" mnemonicParsing="false" onAction="#onNewReleasesMenuItem" text="Get new releases" />
-                  <MenuItem fx:id="featuredPlayListsMenuItem" mnemonicParsing="false" onAction="#onFeaturedPlaylistsMenuItem" text="Get featured playlists" />
               </items>
                <VBox.margin>
                   <Insets left="245.0" top="30.0" />
