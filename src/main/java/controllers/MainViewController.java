@@ -1,16 +1,21 @@
 package controllers;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.SettableFuture;
 import com.wrapper.spotify.Api;
 import com.wrapper.spotify.methods.ArtistSearchRequest;
+import com.wrapper.spotify.methods.NewReleasesRequest;
 import com.wrapper.spotify.methods.RelatedArtistsRequest;
-import com.wrapper.spotify.models.Artist;
-import com.wrapper.spotify.models.Page;
+import com.wrapper.spotify.methods.authentication.ClientCredentialsGrantRequest;
+import com.wrapper.spotify.models.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import models.AlbumFinal;
 import models.ArtistFinal;
 
 import javax.swing.*;
@@ -35,16 +40,32 @@ public class MainViewController implements Initializable {
             .clientId(CLIENT_ID)
             .clientSecret(CLIENT_SECRET)
             .build();
-    /* I will use/set this string to determine what action were going to preform */
-    private String searchRequest;
-
-
 
     /* This is the implemented method from the interface
      * initialize is run when ever the GUI loads up */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /* First thing we want to do before loading anything is make sure to
+         * get the authorization code from spotify that allows our program to access
+          * their site */
+        //create request
+        final ClientCredentialsGrantRequest request = api.clientCredentialsGrant().build();
+        //make request, asynchronously
+        final SettableFuture<ClientCredentials> responseFuture = request.getAsync();
+        /* call back for when request finishes */
+        Futures.addCallback(responseFuture, new FutureCallback<ClientCredentials>() {
+            @Override
+            public void onSuccess(ClientCredentials result) {
+                //set the the access token into our api object
+                api.setAccessToken(result.getAccessToken());
+            }
 
+            @Override
+            public void onFailure(Throwable t) {
+                JOptionPane.showMessageDialog(null, "Something wen't wrong getting access token from " +
+                        "Spotify.com.\nPlease try again later.");
+            }
+        });
     }
 
     /* Handle the button clicks for the menu bar */
@@ -113,13 +134,16 @@ public class MainViewController implements Initializable {
                                 //I made my own class because I wanted to have specific methods to help me get information
                                 //easier than the class that was provided by the API
                                 ArrayList<ArtistFinal> finalArtists = new ArrayList<>();
+
                                 //set the array
                                 for (Artist artist : relatedArtists) {
                                     finalArtists.add(new ArtistFinal(artist.getName(), artist.getHref(),
                                             artist.getGenres(), artist.getPopularity()));
                                 }
+
                                 //display the related artists
                                 outputTextArea.setText("------RELATED ARTISTS------\n\n");
+
                                 for (ArtistFinal artist : finalArtists) {
 
                                     //format what we will display to the user for each artist
@@ -149,7 +173,54 @@ public class MainViewController implements Initializable {
             submitButton.setVisible(true);
         }
         inputTextField.setPromptText("Enter the country code, example: US");
+        //create onAction for button
+        submitButton.setOnAction(event -> {
+            //if no input from user
+            if (inputTextField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Text field must be filled");
+            } else {
+                //if we have input
+                //create the request to grab the new releases
+                final NewReleasesRequest request = api.getNewReleases()
+                        .limit(20)
+                        .offset(0)
+                        .country(inputTextField.getText())
+                        .build();
+                //Push the request
+                try {
+                    NewReleases newReleases = request.get();
+                    //get the page of spotify new albums
+                    Page<SimpleAlbum> pageAlbums = newReleases.getAlbums();
+                    //create a list of those albums
+                    final List<SimpleAlbum> simpleAlbums = pageAlbums.getItems();
+                    //Convert and create an array list of AlbumFinals my own class
+                    //this class has different way of organizing things than the API provides
+                    ArrayList<AlbumFinal> albums = new ArrayList<>();
 
+                    for (SimpleAlbum simpleAlbum : simpleAlbums) {
+                        albums.add(new AlbumFinal(simpleAlbum.getName(),
+                                simpleAlbum.getAlbumType().toString(), simpleAlbum.getHref()));
+                    }
+
+                    //display the albums to the user
+                    outputTextArea.setText("----- NEW RELEASES -----\n\n");
+
+                    for (AlbumFinal album : albums) {
+                        outputTextArea.setText(outputTextArea.getText() +
+                                "Artist: " + album.getArtistName() +
+                                "\nAlbum name: " + album.getAlbumName() +
+                                "\nType: " + album.getAlbumType() +
+                                "\nURL: " + album.getUrl());
+                        outputTextArea.setText(outputTextArea.getText() +
+                                "\n---------------------------------------------------------\n");
+                    }
+                    outputTextArea.setVisible(true);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Something went wrong while getting new releases.\n" +
+                            "Make sure to enter a valid country code and try again.");
+                }
+            }
+        });
     }
 
     /* Whenever use selects to look for featured play-lists from the drop down menu bar */

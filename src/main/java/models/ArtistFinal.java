@@ -1,23 +1,18 @@
 package models;
 
+import reusable.UrlParser;
 
-import com.squareup.okhttp.*;
-
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-
-import javax.swing.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+/* This class is mainly used to store the information I get from the Artist class inside of the Spotify API
+ * I am using. I also have some methods that help me organize the content that is given to me via the API */
 
 public class ArtistFinal {
     private String name;
     private String href;
     private String url;
-    private List<String> genres = new ArrayList<String>();
+    private List<String> genres = new ArrayList<>();
     private int popularity;
 
     //Constructer with no fields
@@ -88,35 +83,8 @@ public class ArtistFinal {
     }
 
     public String getUrl() {
-        //Using OkHTTP access the web, with the provided href
-        //with the href we can grab json data and grab the URL for the
-        //the artists homepage, this will help us give this infromation to the user
-        //We grab the JSON asynchronously
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url(href)
-                .build();
-
-        try {
-            Response response = client.newCall(request).execute();
-
-            //Get the body of the url contents
-            String jsondata = response.body().string();
-            //Parse the json data
-            try {
-                JSONObject baseData = new JSONObject(jsondata);
-                JSONObject jsonUrl = baseData.getJSONObject("external_urls");
-                url = jsonUrl.getString("spotify");
-            } catch (JSONException e) {
-                JOptionPane.showMessageDialog(null, "JSON error occurred: " + e);
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        UrlParser urlParser = new UrlParser(href);
+        url = urlParser.getParsedUrl();
         return url;
     }
 
