@@ -13,6 +13,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("views/main_view.fxml"));
         primaryStage.setTitle("Music Recommender");
         primaryStage.setScene(new Scene(root, 800, 600));
+        String css = Main.class.getResource("css/main_view.css").toExternalForm();
+        primaryStage.getScene().getStylesheets().add(css);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
