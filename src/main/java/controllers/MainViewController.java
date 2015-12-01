@@ -220,4 +220,16 @@ public class MainViewController implements Initializable {
             }
         });
     }
+
+    @Override
+    public String toString() {
+        return "MainViewController{" +
+                "submitButton=" + submitButton +
+                ", inputTextField=" + inputTextField +
+                ", outputTextArea=" + outputTextArea +
+                ", CLIENT_ID='" + CLIENT_ID + '\'' +
+                ", CLIENT_SECRET='" + CLIENT_SECRET + '\'' +
+                ", api=" + api +
+                '}';
+    }
 }

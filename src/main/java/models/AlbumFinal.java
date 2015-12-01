@@ -7,6 +7,7 @@ package models;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import com.sun.org.apache.bcel.internal.generic.LADD;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,7 +66,6 @@ public class AlbumFinal {
                 //Parse the json data
                 JSONObject baseData = new JSONObject(jsondata);
                 JSONArray jsonArtists = baseData.getJSONArray("artists");
-                System.out.println(jsonArtists.toString());
                 JSONObject singleArtist = jsonArtists.getJSONObject(0);
                 artistName = singleArtist.getString("name");
 
@@ -98,5 +98,32 @@ public class AlbumFinal {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = true;
+
+        /* If were the same class and the have the same album name AND
+         * the same artist name, were equal */
+        if (obj instanceof AlbumFinal) {
+            if (((AlbumFinal) obj).albumName == this.albumName &&
+                    ((AlbumFinal) obj).artistName == this.artistName) {
+                result = true;
+            }
+        }
+
+        return  result;
+    }
+
+    @Override
+    public String toString() {
+        return "AlbumFinal{" +
+                "albumName='" + albumName + '\'' +
+                ", albumType='" + albumType + '\'' +
+                ", artistName='" + artistName + '\'' +
+                ", href='" + href + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

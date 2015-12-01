@@ -91,4 +91,30 @@ public class ArtistFinal {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = false;
+        //equals method uses polymorphism
+        //if were the same class and the artists have the same name
+        //then were the same object
+        if (obj instanceof ArtistFinal) {
+            if (((ArtistFinal) obj).name == this.name) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ArtistFinal{" +
+                "name='" + name + '\'' +
+                ", href='" + href + '\'' +
+                ", url='" + url + '\'' +
+                ", genres=" + genres +
+                ", popularity=" + popularity +
+                '}';
+    }
 }

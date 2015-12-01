@@ -63,4 +63,12 @@ public class UrlParser {
         }
         return url;
     }
+
+    @Override
+    public String toString() {
+        return "UrlParser{" +
+                "href='" + href + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }
