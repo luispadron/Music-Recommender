@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: #151515;
+    -fx-background-color: #202020;
 }
 
 /* Menu bar */
@@ -28,7 +28,6 @@
     -fx-background-color: #ACC267;
 }
 
-
 /* Split menu button  */
 
 .split-menu-button {
@@ -38,27 +37,32 @@
 .split-menu-button {
     -fx-background-color: #505050;
     -fx-border-color: #303030;
+    -fx-border-width: 3px;
 }
 
 .split-menu-button .label  {
-    -fx-background-color: #303030;
-
+    -fx-background-color: transparent;
 }
 
 .split-menu-button .arrow-button {
-    -fx-background-color: #202020;
+    -fx-background-color: #303030;
 }
 
 .split-menu-button .arrow-button:hover {
     -fx-background-color: #ACC267;
 }
 
-.split-menu-button .menu-item:focused {
-    -fx-background-color: #ACC267;
+.split-menu-button .menu-item {
+    -fx-border-color: #303030;
+    -fx-background-color: #505050;
+    -fx-pref-width: 290px;
+    -fx-text-alignment: center;
+    -fx-padding: 5px;
 }
 
-.split-menu-button .menu-item .label {
-    -fx-text-fill: white;
+.split-menu-button .menu-item:focused {
+    -fx-background-color: #ACC267;
+    -fx-border-color: #ACC267;
 }
 
 /* Submit button & Text field */
@@ -66,6 +70,7 @@
 .submit-button {
     -fx-background-color: #505050;
     -fx-border-color: #303030;
+    -fx-border-width: 3px;
 }
 
 .submit-button:hover {
@@ -75,8 +80,40 @@
 .submit-button .text-input {
     -fx-background-color: #505050;
     -fx-border-color: #303030;
+    -fx-border-width: 2px;
     -fx-text-fill: #ACC267;
     -fx-padding: 10%;
+}
+
+/* Text Area */
+
+.text-area {
+    -fx-background-color: #505050;
+    -fx-border-color: #303030;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+}
+
+.text-area .scroll-pane .viewport .content{
+    -fx-background-color: #505050;
+    -fx-border-color: #303030;
+    -fx-border-width: 5px;
+}
+
+.text-area .scroll-bar .track {
+    -fx-background-color: #505050;
+}
+
+.text-area .scroll-bar .increment-button {
+    -fx-background-color: #ACC267;
+}
+
+.text-area .scroll-bar .decrement-button {
+    -fx-background-color: #ACC267;
+}
+
+.text-area .scroll-bar .thumb {
+    -fx-background-color: #ACC267;
 }
 
 /* Footer box */
@@ -88,7 +125,7 @@
 /* Globals */
 
 .context-menu {
-    -fx-background-color: #303030;
+    -fx-background-color: transparent;
 }
 
 .label {

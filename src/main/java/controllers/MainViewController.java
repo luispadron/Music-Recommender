@@ -140,7 +140,7 @@ public class MainViewController implements Initializable {
                                 }
 
                                 //display the related artists
-                                outputTextArea.setText("------RELATED ARTISTS------\n\n");
+                                outputTextArea.setText("-------- RELATED ARTISTS --------\n\n");
 
                                 for (ArtistFinal artist : finalArtists) {
 
@@ -152,7 +152,7 @@ public class MainViewController implements Initializable {
                                                 + artist.getFormattedGenres());
                                     }
                                     outputTextArea.setText(outputTextArea.getText() + "\nListen: " + artist.getUrl() +
-                                            "\n---------------------------------------------------------\n");
+                                            "\n\n--------------------------------------------------------------------\n");
                                 }
                             }
                         } catch (Exception e) {
@@ -201,7 +201,7 @@ public class MainViewController implements Initializable {
                     }
 
                     //display the albums to the user
-                    outputTextArea.setText("----- NEW RELEASES -----\n\n");
+                    outputTextArea.setText("--------- NEW RELEASES ---------\n\n");
 
                     for (AlbumFinal album : albums) {
                         outputTextArea.setText(outputTextArea.getText() +
@@ -210,7 +210,7 @@ public class MainViewController implements Initializable {
                                 "\nType: " + album.getAlbumType() +
                                 "\nURL: " + album.getUrl());
                         outputTextArea.setText(outputTextArea.getText() +
-                                "\n---------------------------------------------------------\n");
+                                "\n\n--------------------------------------------------------------------\n");
                     }
                     outputTextArea.setVisible(true);
                 } catch (Exception e) {
