@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -8,23 +9,23 @@
 
 <AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
    <children>
-      <HBox prefHeight="60.0" prefWidth="800.0">
+      <HBox prefHeight="60.0" prefWidth="809.0">
          <children>
-            <MenuBar prefHeight="25.0" prefWidth="800.0" styleClass="menu-bar">
+            <MenuBar prefHeight="25.0" prefWidth="839.0">
               <menus>
-                <Menu mnemonicParsing="false" text="File" id="#menu">
+                <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onCloseMenuItem" text="Close" id="#menu-item" />
+                    <MenuItem mnemonicParsing="false" onAction="#onCloseMenuItem" text="Close" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit" id="#menu">
+                <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onClearMenuItem" text="Clear" id="#menu-item" />
+                    <MenuItem mnemonicParsing="false" onAction="#onClearMenuItem" text="Clear" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help" id="#menu">
+                <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onAboutMenuItem" text="About" id="#menu-item"/>
+                    <MenuItem mnemonicParsing="false" onAction="#onAboutMenuItem" text="About" />
                   </items>
                 </Menu>
               </menus>
@@ -48,7 +49,7 @@
                   <Font size="14.0" />
                </font>
             </SplitMenuButton>
-            <Button fx:id="submitButton" mnemonicParsing="false" text="Submit" visible="false" styleClass="submit-button">
+            <Button fx:id="submitButton" mnemonicParsing="false" styleClass="submit-button" text="Submit" textFill="WHITE" visible="false">
                <VBox.margin>
                   <Insets left="200.0" top="40.0" />
                </VBox.margin>
@@ -63,9 +64,12 @@
             </TextArea>
          </children>
       </VBox>
-      <VBox layoutX="14.0" layoutY="577.0" prefHeight="18.0" prefWidth="600.0">
+      <VBox id="footer-box" layoutX="-9.0" layoutY="570.0" prefHeight="49.0" prefWidth="838.0">
          <children>
-            <Label text="Created by Luis Padron" />
+            <Label text="Created by Luis Padron">
+               <padding>
+                  <Insets left="20.0" top="5.0" />
+               </padding></Label>
          </children>
       </VBox>
    </children>

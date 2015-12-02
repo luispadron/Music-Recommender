@@ -1,7 +1,96 @@
 .root {
-    -fx-background-color: #121314;
+    -fx-background-color: #151515;
 }
 
+/* Menu bar */
+
 .menu-bar {
-    -fx-background-color: #1C1C1F;
+    -fx-background-color: #303030;
+}
+
+.menu-bar .menu:hover{
+    -fx-background-color: #ACC267;
+}
+
+.menu-bar .menu:focused{
+    -fx-background-color: #ACC267;
+}
+
+.menu-bar .menu:showing{
+    -fx-background-color: #ACC267;
+}
+
+.menu-bar .menu-item {
+    -fx-background-color: #303030;
+}
+
+.menu-bar .menu-item:hover {
+    -fx-background-color: #ACC267;
+}
+
+
+/* Split menu button  */
+
+.split-menu-button {
+    -fx-alignment: center;
+}
+
+.split-menu-button {
+    -fx-background-color: #505050;
+    -fx-border-color: #303030;
+}
+
+.split-menu-button .label  {
+    -fx-background-color: #303030;
+
+}
+
+.split-menu-button .arrow-button {
+    -fx-background-color: #202020;
+}
+
+.split-menu-button .arrow-button:hover {
+    -fx-background-color: #ACC267;
+}
+
+.split-menu-button .menu-item:focused {
+    -fx-background-color: #ACC267;
+}
+
+.split-menu-button .menu-item .label {
+    -fx-text-fill: white;
+}
+
+/* Submit button & Text field */
+
+.submit-button {
+    -fx-background-color: #505050;
+    -fx-border-color: #303030;
+}
+
+.submit-button:hover {
+    -fx-border-color: #ACC267;
+}
+
+.submit-button .text-input {
+    -fx-background-color: #505050;
+    -fx-border-color: #303030;
+    -fx-text-fill: #ACC267;
+    -fx-padding: 10%;
+}
+
+/* Footer box */
+
+#footer-box {
+    -fx-border-color: #303030;
+}
+
+/* Globals */
+
+.context-menu {
+    -fx-background-color: #303030;
+}
+
+.label {
+    -fx-text-fill: white;
 }
