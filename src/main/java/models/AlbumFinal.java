@@ -23,6 +23,11 @@ public class AlbumFinal {
     private String href;
     private String url;
 
+    /* Empty constructer */
+    public AlbumFinal() {
+
+    }
+    /* OVERLOADED constructer with fields being set */
     public AlbumFinal(String albumName, String albumType, String href) {
         this.albumName = albumName;
         this.albumType = albumType;
@@ -102,17 +107,16 @@ public class AlbumFinal {
 
     @Override
     public boolean equals(Object obj) {
-        boolean result = true;
+        boolean result = false;
 
         /* If were the same class and the have the same album name AND
          * the same artist name, were equal */
         if (obj instanceof AlbumFinal) {
-            if (((AlbumFinal) obj).albumName == this.albumName &&
-                    ((AlbumFinal) obj).artistName == this.artistName) {
+            if (((AlbumFinal) obj).albumName.equals(this.albumName) &&
+                    ((AlbumFinal) obj).artistName.equals(this.artistName)) {
                 result = true;
             }
         }
-
         return  result;
     }
 

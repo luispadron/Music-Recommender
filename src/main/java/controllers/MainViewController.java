@@ -21,7 +21,7 @@ import models.ArtistFinal;
 import javax.swing.*;
 import java.net.URL;
 import java.util.*;
-
+                                           /* INTERFACE */
 public class MainViewController implements Initializable {
     /* Set the fxml objects so we can use them in code */
     @FXML
@@ -87,6 +87,7 @@ public class MainViewController implements Initializable {
 
     /* Whenever use selects to look for related artists from the drop down menu bar */
     public void onRelatedArtistsMenuItem(ActionEvent actionEvent) {
+        /*EXCEPTION HANDLING*/
         /* Check if submit button is hidden, if so, show it */
         if (!submitButton.isVisible()) {
            submitButton.setVisible(true);
@@ -98,12 +99,13 @@ public class MainViewController implements Initializable {
           * option the user might want to do*/
         submitButton.setOnAction((event) -> {
             //In case the user leaves text area blank
+            /*EXCEPTION HANDLING*/
             if (inputTextField.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Text field cannot be empty.");
             } else {
                 //if text field isn't empty
                 String userInput = inputTextField.getText();
-                String ARTIST_ID = "";
+                String artistId = "";
                 outputTextArea.setVisible(true);
             /* First we search for the artist and get the artist ID from Spotify */
 
@@ -118,9 +120,9 @@ public class MainViewController implements Initializable {
                     } else {
                         //Grab the id for the first artist, this is the most relevant artist
                         //based on user search query
-                        ARTIST_ID = artists.get(0).getId();
+                        artistId = artists.get(0).getId();
                         /* Now that we have the artists ID we can grab the related artists */
-                        final RelatedArtistsRequest relatedArtistsRequest = api.getArtistRelatedArtists(ARTIST_ID).build();
+                        final RelatedArtistsRequest relatedArtistsRequest = api.getArtistRelatedArtists(artistId).build();
                         try {
                             //Collect the artists into a list
                             final List<Artist> relatedArtists = relatedArtistsRequest.get();
@@ -174,6 +176,7 @@ public class MainViewController implements Initializable {
         //create onAction for button
         submitButton.setOnAction(event -> {
             //if no input from user
+            /*EXCEPTION HANDLING*/
             if (inputTextField.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Text field must be filled");
             } else {
@@ -220,7 +223,7 @@ public class MainViewController implements Initializable {
             }
         });
     }
-
+    /* OVERRIDED toString METHOD */
     @Override
     public String toString() {
         return "MainViewController{" +

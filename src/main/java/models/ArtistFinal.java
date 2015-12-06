@@ -18,7 +18,8 @@ public class ArtistFinal {
     //Constructer with no fields
     public ArtistFinal() {
     }
-    //Overloaded constructer with all fields being set from the start, except for URL
+
+    //OVERLOADED constructer with all fields being set from the start, except for URL
     //url can't be set from start simply because we need to grab it using JSON
     public ArtistFinal(String name, String href, List<String> genres, int popularity) {
         this.name = name;
@@ -92,21 +93,23 @@ public class ArtistFinal {
         this.url = url;
     }
 
+    /* METHOD OVERRIDE FOR equals METHOD */
     @Override
     public boolean equals(Object obj) {
         boolean result = false;
+
         //equals method uses polymorphism
         //if were the same class and the artists have the same name
         //then were the same object
         if (obj instanceof ArtistFinal) {
-            if (((ArtistFinal) obj).name == this.name) {
+            if (((ArtistFinal) obj).name.equals(this.name)) {
                 result = true;
             }
         }
 
         return result;
     }
-
+    /* METHOD OVERRIDE FOR toString METHOD */
     @Override
     public String toString() {
         return "ArtistFinal{" +
