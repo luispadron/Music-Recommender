@@ -6,3 +6,6 @@ Uses the Spotify API wrapper found [here](https://github.com/thelinmichael/spoti
 
 ###Purpose
 A class project for Java programming.
+
+###Demo
+![Demo](https://i.imgur.com/nlZwsQA.gif "ugly app")
